@@ -93,7 +93,7 @@ const DocPage = () => {
                     <div className='px-4'>
                         <img
                             className='w-[50px] h-[50px] sm:w-[120px] sm:h-[120px] rounded-full object-cover mb-4'
-                            src={'https://cdn.britannica.com/56/199056-050-CCC44482/Jeff-Bezos-2017.jpg'}
+                            src={doc.profilePic}
                             alt='Doctor'
                         />
                     </div>
