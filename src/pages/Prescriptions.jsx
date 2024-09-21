@@ -29,8 +29,9 @@ const Prescriptions = () => {
        </div>
       </div>
        <div className='flex flex-col gap-1'> 
-        {prescriptions.length===0?<span className='mx-4'>No Prescription</span>:prescriptions.map((prescription)=>{
-          return <Prescription id={prescription.id} time={prescription.time} prescriptions={prescription.prescriptions} date={prescription.date} doctor={prescription.doctor} />
+        {prescriptions.length===0?<span className='mx-4'>No Prescription</span>:prescriptions?.map((prescription)=>{
+          const aggregateData=prescription?.prescriptionDetails?.split(",")
+          return <Prescription id={prescription.id}  prescriptions={aggregateData} date={prescription.date} doctor={prescription.doctor} />
         })}
      </div>
     </div>
@@ -38,19 +39,3 @@ const Prescriptions = () => {
 }
 export default Prescriptions
 
-/*{
-        "id": 1,
-        "appointmentId": 31,
-        "doctorId": 3,
-        "patientId": 1,
-        "details": "Glucose - 100mg",
-        "date": "2024-08-22T00:00:00.000Z",
-        "Doctor": {
-            "id": 3,
-            "firstname": "tony",
-            "lastname": "starke",
-            "email": "ts@gmail.com",
-            "password": "$2b$10$YLpz7l9qU4iq0e2X6vvl1.Tr4s3cefFgTqQTXFKaLOyfMLA/PH3ia",
-            "isAdmin": false
-        }
-    }*/

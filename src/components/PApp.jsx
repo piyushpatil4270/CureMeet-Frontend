@@ -1,6 +1,7 @@
 import axios from "axios";
 import moment from "moment";
 import React, { useEffect, useState } from "react";
+import StarIcon from "@mui/icons-material/Star"
 import { useParams } from "react-router-dom";
 
 const DApp = () => {
@@ -51,8 +52,12 @@ const DApp = () => {
   if (!appointment) return <span>Loading...</span>;
   return (
     <div className="w-full h-full mx-auto bg-white shadow-lg rounded-lg overflow-hidden my-4">
-      <div className="p-4 flex flex-col gap-2">
-        <h2 className="text-lg font-semibold text-black ">
+      <div className="flex gap-3 items-center justify-start p-2">
+           <div>
+            <img className="w-[120px] h-[120px] rounded-full" src={appointment?.doctor?.profilePic} />
+           </div>
+           <div className="flex flex-col gap-1">
+           <h2 className="text-lg font-semibold text-black ">
           Doctor: {appointment.doctor.firstname} {appointment.doctor.lastname}
         </h2>
         <span className="text-[12px] text-black font-bold ">
@@ -73,12 +78,16 @@ const DApp = () => {
             {moment(appointment.time, "HH:mm:ss").format("h:mm A")}
           </span>
         </span>
+           </div>
+      </div>
+      <div className="p-4 flex flex-col gap-2">
+       
         <button className="inline-block bg-green-500 text-white w-fit font-semibold text-[12px] px-2 py-1 rounded-sm mt-3">
           Appointment {appointment.status}
         </button>
 
         <div className="mt-4">
-          <h3 className="text-sm font-semibold text-gray-800 mb-2">
+          <h3 className="text-[14px] font-semibold text-gray-800 mb-2">
             Prescriptions:
           </h3>
           <div className="flex  flex-col gap-2">
@@ -127,7 +136,9 @@ const DApp = () => {
               <div className="w-full flex gap-2  items-center " >
               <span className="text-[12px] font-semibold ">Your Rating:</span>
               
-              <span className="text-[12px] ">{review.rating}</span>
+              <span className="text-[12px] ">{Array.from({ length: review.rating }).map((_, index) => (
+    <StarIcon key={index} fontSize="small" />
+  ))}</span>
                
               </div>
               

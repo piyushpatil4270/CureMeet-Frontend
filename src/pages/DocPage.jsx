@@ -44,7 +44,7 @@ const DocPage = () => {
            setDoc(res.data.doctor)
            setReviews(res.data.reviews)
 
-           setAvgrating(parseInt(res.data?.rating[0]?.totalRating)/parseInt(res.data?.rating[0]?.totalCount))
+           setAvgrating(res.data?.rating[0]?.totalRating>0?parseInt(res.data?.rating[0]?.totalRating)/parseInt(res.data?.rating[0]?.totalCount):0)
            console.log(res.data.rating)
         } catch (error) {
             console.log("Error: ",error)

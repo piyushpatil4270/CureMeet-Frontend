@@ -41,7 +41,7 @@ const PrescriptionCard = ({id,prescriptions,time,date,doctor}) => {
     let currentY = startY;
     
     prescriptions.forEach((pres, i) => {
-      doc.text(`${i + 1}. ${pres.details}`, 20, currentY);
+      doc.text(`${i + 1}. ${pres}`, 20, currentY);
       currentY += 10; 
     });
   
@@ -93,9 +93,9 @@ const PrescriptionCard = ({id,prescriptions,time,date,doctor}) => {
             <h3 className="text-sm w-full font-semibold text-gray-800 mb-2">Prescriptions:</h3>
             <div className="flex flex-col w-full gap-2">
               
-             {prescriptions.map((prescription)=>{
+             {prescriptions?.map((prescription)=>{
               return <div className="bg-gray-200 text-gray-800 text-xs font-medium px-2 py-1 rounded">
-              {prescription.details}
+              {prescription}
             </div>
              })}
             </div>
