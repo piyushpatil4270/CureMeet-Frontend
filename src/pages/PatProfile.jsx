@@ -130,7 +130,7 @@ const ProfilePage = () => {
       formData.append('userId', userId);
       const res = await axios.post('https://cure-meet-backend.vercel.app/documents/create', formData,{headers:{"Authorization":userToken,"userType":userType}});
       if (res.status === 202) {
-        alert(res.data);
+        alert("Document uploaded successfully");
         setTrigger(!trigger);
       }
     } catch (error) {
