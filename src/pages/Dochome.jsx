@@ -26,9 +26,14 @@ const Appointments = () => {
  useEffect(()=>{
  fetchAppointments()
  },[])
-if(!appointments || loading) return <div className='w-full h-full flex items-center  justify-center'>
-<MyLoader/>
-</div>
+ if (!appointments) {
+  return (
+    <div className='w-full h-full flex items-center justify-center'>
+      <MyLoader />
+    </div>
+  );
+}
+
 
 return (
   <div className="w-full h-full flex flex-col py-2">

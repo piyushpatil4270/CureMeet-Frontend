@@ -16,8 +16,11 @@ const DApp = () => {
   const appointmentId = parseInt(id);
   const userToken=localStorage.getItem("Htoken")
   const userType=localStorage.getItem("usertype")
+  const [loading,setLoading]=useState(false)
   const fetchAppointment = async () => {
+
     try {
+      setLoading(true)
       const res = await axios.post(
         "https://cure-meet-backend.vercel.app/appointments/patient/appointment",
         { appointmentId: appointmentId },
@@ -26,6 +29,7 @@ const DApp = () => {
       setappointment(res.data?.appointments);
       setApresc(res.data?.prescriptions);
       setReview(res.data.review)
+      setLoading(false)
       console.log("Data is ", res.data);
     } catch (error) {
       console.log("Error: ", error);
@@ -50,9 +54,14 @@ const DApp = () => {
   useEffect(() => {
     fetchAppointment();
   }, [trigger]);
-  if (!appointment) <div className='w-full h-full flex items-center  justify-center'>
-  <MyLoader/>
-</div>
+  if (!appointment) {
+    return (
+      <div className='w-full h-full flex items-center justify-center'>
+        <MyLoader />
+      </div>
+    );
+  }
+  
   return (
     <div className="w-full h-full mx-auto bg-white shadow-lg rounded-lg overflow-hidden my-4">
       <div className="flex gap-3 items-center justify-start p-2">
@@ -61,24 +70,24 @@ const DApp = () => {
            </div>
            <div className="flex flex-col gap-1">
            <h2 className="text-lg font-semibold text-black ">
-          Doctor: {appointment.doctor.firstname} {appointment.doctor.lastname}
+          Doctor: {appointment?.doctor?.firstname} {appointment?.doctor?.lastname}
         </h2>
         <span className="text-[12px] text-black font-bold ">
-          Email:{appointment.doctor.email}
+          Email:
           <span className="text-[12px] font-normal text-black">
-            {appointment.Doctor?.email}
+            {appointment?.doctor?.email}
           </span>
         </span>
         <span className="text-[12px] text-black font-bold">
           Date:{" "}
           <span className="text-[12px] font-normal text-black">
-            {moment.utc(appointment.Date).format("DD-MMMM-YYYY")}
+            {moment.utc(appointment?.Date).format("DD-MMMM-YYYY")}
           </span>
         </span>
         <span className="text-[12px] text-black font-bold">
           Time:{" "}
           <span className="text-[12px] font-normal text-black">
-            {moment(appointment.time, "HH:mm:ss").format("h:mm A")}
+            {moment(appointment?.time, "HH:mm:ss").format("h:mm A")}
           </span>
         </span>
            </div>
@@ -86,7 +95,7 @@ const DApp = () => {
       <div className="p-4 flex flex-col gap-2">
        
         <button className="inline-block bg-green-500 text-white w-fit font-semibold text-[12px] px-2 py-1 rounded-sm mt-3">
-          Appointment {appointment.status}
+          Appointment {appointment?.status}
         </button>
 
         <div className="mt-4">
@@ -94,7 +103,7 @@ const DApp = () => {
             Prescriptions:
           </h3>
           <div className="flex  flex-col gap-2">
-            {appointment.status === "Successful" &&
+            {appointment?.status === "Successful" &&
               apresc.map((presc) => {
                 return (
                   <div className="w-full flex gap-2 items-center">
