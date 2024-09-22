@@ -5,16 +5,20 @@ import Dateslot from '../components/Dateslot'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import Calendar from "../components/Calender"
+import MyLoader from '../components/Loader'
 
 const Appointments = () => {
  const [appointments,setAppointments]=useState(null)
  const navigate=useNavigate()
  const userToken=localStorage.getItem("Htoken")
  const userType=localStorage.getItem("usertype")
+ const [loading,setLoading]=useState(false)
  const fetchAppointments=async()=>{
   try {
+    setLoading(true)
     const res=await axios.get("https://cure-meet-backend.vercel.app/appointments/doctor/todaysAppointments",{headers:{"Authorization":userToken,"userType":userType}})
     setAppointments(res.data)
+    setLoading(false)
   } catch (error) {
     console.log(error)
   }
@@ -22,7 +26,7 @@ const Appointments = () => {
  useEffect(()=>{
  fetchAppointments()
  },[])
-if(!appointments) return <div className='w-full h-full flex items-center  justify-center'>
+if(!appointments || loading) return <div className='w-full h-full flex items-center  justify-center'>
 <MyLoader/>
 </div>
 
