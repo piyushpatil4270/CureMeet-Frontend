@@ -4,6 +4,7 @@ import { saveAs } from 'file-saver';
 import BarChart from '../components/PieChart'; 
 import Chart2 from "../components/Barchart"
 import moment from "moment"
+import MyLoader from '../components/Loader';
 const ProfilePage = () => {
   const [showChangePassword, setShowChangePassword] = useState(false);
   const [monthlyData,setMonthlyData]=useState([
@@ -158,7 +159,9 @@ const ProfilePage = () => {
     fetchMonthlyData()
   },[])
 
-  if (!user) return <span>Loading...</span>;
+  if (!user) return <div className='w-full h-full flex items-center  justify-center'>
+  <MyLoader/>
+</div>
 
   return (
     <div className="w-full bg-gray-100 p-8 min-h-screen">

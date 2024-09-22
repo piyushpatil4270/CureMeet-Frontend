@@ -3,6 +3,7 @@ import moment from "moment";
 import React, { useEffect, useState } from "react";
 import StarIcon from "@mui/icons-material/Star"
 import { useParams } from "react-router-dom";
+import MyLoader from "./Loader";
 
 const DApp = () => {
   const [appointment, setappointment] = useState(null);
@@ -49,7 +50,9 @@ const DApp = () => {
   useEffect(() => {
     fetchAppointment();
   }, [trigger]);
-  if (!appointment) return <span>Loading...</span>;
+  if (!appointment) <div className='w-full h-full flex items-center  justify-center'>
+  <MyLoader/>
+</div>
   return (
     <div className="w-full h-full mx-auto bg-white shadow-lg rounded-lg overflow-hidden my-4">
       <div className="flex gap-3 items-center justify-start p-2">

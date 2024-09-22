@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import PatientAptCard from '../components/PatientApt'
 import moment from 'moment'
 import Calendar from "../components/Calender"
+import MyLoader from '../components/Loader'
 const PatientApp = () => {
   const [appointments,setAppointments]=useState(null)
   const [selectedDate,setSelectedDate]=useState(moment.utc().toDate())
@@ -21,7 +22,9 @@ const PatientApp = () => {
   getAllAppointments()
   },[trigger,selectedDate])
 
-  if(!appointments) return <span>Loading</span>
+  if(!appointments) return <div className='w-full h-full flex items-center  justify-center'>
+  <MyLoader/>
+</div>
 
   return (
   <div className='w-full h-full flex flex-col gap-2'>

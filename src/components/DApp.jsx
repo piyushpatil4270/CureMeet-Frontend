@@ -5,6 +5,7 @@ import StarIcon from '@mui/icons-material/Star';
 import { useParams } from 'react-router-dom';
 import { saveAs } from 'file-saver';
 import Download from "@mui/icons-material/Download";
+import MyLoader from './Loader';
 
 const DApp = () => {
   const [appointment, setAppointment] = useState(null);
@@ -68,7 +69,9 @@ const DApp = () => {
     userDocs();
   }, [appointment]);
 
-  if (!appointment) return <span>Loading...</span>;
+  if (!appointment) return <div className='w-full h-full flex items-center  justify-center'>
+  <MyLoader/>
+</div>
 
   return (
     <div className="w-full h-full mx-auto bg-white shadow-lg rounded-lg overflow-hidden my-4">

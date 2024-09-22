@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import moment from "moment"
 import Chart2 from "../components/Barchart" 
 import LineChart from '../components/LineChart';
+import MyLoader from '../components/Loader';
 
 const ProfilePage = () => {
   const [showChangePassword, setShowChangePassword] = useState(false);
@@ -65,7 +66,9 @@ fetchData()
 
   
 
-  if (!user) return <span>Loading...</span>;
+  if (!user) return <div className='w-full h-full flex items-center  justify-center'>
+  <MyLoader/>
+</div>
 
   return (
     <div className="w-full bg-gray-100 p-8 min-h-screen">

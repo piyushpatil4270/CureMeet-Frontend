@@ -3,6 +3,7 @@ import moment from 'moment';
 import axios from 'axios';
 import StarIcon from '@mui/icons-material/Star';
 import { useParams } from 'react-router-dom';
+import MyLoader from '../components/Loader';
 
 const DocPage = () => {
     const [selectedSlot, setSelectedSlot] = useState(null);
@@ -84,7 +85,9 @@ const DocPage = () => {
     },[selectedSlot,trigger])
     
     
-    if(!doc)return <span>Loading...</span>
+    if(!doc)return <div className='w-full h-full flex items-center  justify-center'>
+    <MyLoader/>
+  </div>
 
     return (
         <div className='w-full min-h-screen flex items-start justify-center bg-gray-100 p-4'>
