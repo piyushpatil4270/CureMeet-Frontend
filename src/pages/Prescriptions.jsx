@@ -10,7 +10,7 @@ const Prescriptions = () => {
   const userType=localStorage.getItem("usertype")
   const getAllPrescriptions=async()=>{
     try {
-      const res=await axios.post("https://cure-meet-backend.vercel.app/prescriptions/patient/all",{patientId:1,date:moment.utc(selectedDate).format("DD-MM-YYYY")},{headers:{"Authorization":userToken,"userType":userType}})
+      const res=await axios.post("http://localhost:5500/prescriptions/patient/all",{patientId:1,date:moment.utc(selectedDate).format("DD-MM-YYYY")},{headers:{"Authorization":userToken,"userType":userType}})
       setPrescriptions(res.data)
     } catch (error) {
       console.log("Errror: ",error?.message)

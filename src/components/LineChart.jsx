@@ -1,11 +1,11 @@
 import React from 'react';
 import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS, Title, Tooltip, Legend, LineElement, CategoryScale, LinearScale, PointElement } from 'chart.js';
-
+import moment from 'moment';
 ChartJS.register(Title, Tooltip, Legend, LineElement, CategoryScale, LinearScale, PointElement);
 
 const LineChart = ({ dailyData }) => {
-  const labels = dailyData.map(data => data.day);
+  const labels = dailyData.map(data => moment(data.day,"YYYY-MM-DD").format("DD-MMMM").slice(0,6));
   const data = dailyData.map(data => data.appointments);
 
   const chartData = {
@@ -34,7 +34,7 @@ const LineChart = ({ dailyData }) => {
       tooltip: {
         callbacks: {
           label: function (context) {
-            return `Appointments: ${context.raw}`;
+            return ``;
           },
         },
       },

@@ -22,7 +22,7 @@ const DApp = () => {
     try {
       setLoading(true)
       const res = await axios.post(
-        "https://cure-meet-backend.vercel.app/appointments/patient/appointment",
+        "http://localhost:5500/appointments/patient/appointment",
         { appointmentId: appointmentId },
         {headers:{"Authorization":userToken,"userType":userType}}
       );
@@ -42,7 +42,7 @@ const DApp = () => {
       return
     }
     try {
-      const res=await axios.post("https://cure-meet-backend.vercel.app/appointments/reviews/add",{appointmentId:appointmentId,rating:rating,details:details,doctorId:appointment.doctor.id},{headers:{"Authorization":userToken,"userType":userType}})
+      const res=await axios.post("http://localhost:5500/appointments/reviews/add",{appointmentId:appointmentId,rating:rating,details:details,doctorId:appointment.doctor.id},{headers:{"Authorization":userToken,"userType":userType}})
       setTrigger(!trigger)
       alert(res.data)
     } catch (error) {

@@ -8,7 +8,7 @@ const Signin = ({setAuth,setUserType}) => {
     const [password,setPassword]=useState("")
     const handleSignin=async()=>{
         try {
-            const res=await axios.post(`https://cure-meet-backend.vercel.app/auth/${isPatient?'patient':'doctor'}/signin`,{email:email,password:password})
+            const res=await axios.post(`http://localhost:5500/auth/${isPatient?'patient':'doctor'}/signin`,{email:email,password:password})
             if(res.status===200||res.status===201){
                 alert(res.data)
                 return
