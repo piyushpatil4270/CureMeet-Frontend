@@ -86,7 +86,7 @@ const ProfilePage = () => {
       const startDate = moment().startOf('year').format('YYYY-MM-DD');
       const endDate = moment().endOf('year').format('YYYY-MM-DD');
       
-      const res = await axios.post("http://localhost:5500/appointments/patient/monthlyData", {
+      const res = await axios.post("https://cure-meet-backend.vercel.app/appointments/patient/monthlyData", {
         startDate,
         endDate,
         userId: 1
@@ -99,7 +99,7 @@ const ProfilePage = () => {
   }
   const fetchUser = async () => {
     try {
-      const res = await axios.post('http://localhost:5500/auth/profile', { userId },{headers:{"Authorization":userToken,"userType":userType}});
+      const res = await axios.post('https://cure-meet-backend.vercel.app/auth/profile', { userId },{headers:{"Authorization":userToken,"userType":userType}});
       setUser(res.data);
     } catch (error) {
       console.log(error);
@@ -113,7 +113,7 @@ const ProfilePage = () => {
 
   const fetchDocuments = async () => {
     try {
-      const res = await axios.post('http://localhost:5500/documents/getAll', { },{headers:{"Authorization":userToken,"userType":userType}});
+      const res = await axios.post('https://cure-meet-backend.vercel.app/documents/getAll', { },{headers:{"Authorization":userToken,"userType":userType}});
       setDocs(res.data);
     } catch (error) {
       console.log('Error: ', error);
@@ -129,7 +129,7 @@ const ProfilePage = () => {
       const formData = new FormData();
       formData.append('file', file);
       formData.append('userId', userId);
-      const res = await axios.post('http://localhost:5500/documents/create', formData,{headers:{"Authorization":userToken,"userType":userType}});
+      const res = await axios.post('https://cure-meet-backend.vercel.app/documents/create', formData,{headers:{"Authorization":userToken,"userType":userType}});
       if (res.status === 202) {
         alert("Document uploaded successfully");
         setTrigger(!trigger);
@@ -141,7 +141,7 @@ const ProfilePage = () => {
 
   const delDoc=async(id)=>{
     try {
-      const res=await axios.post("http://localhost:5500/documents/delete",{docId:id},{headers:{"Authorization":userToken,"userType":userType}})
+      const res=await axios.post("https://cure-meet-backend.vercel.app/documents/delete",{docId:id},{headers:{"Authorization":userToken,"userType":userType}})
       setTrigger(!trigger)
     } catch (error) {
       console.log("Error: ",error)
