@@ -41,7 +41,7 @@ const DocPage = () => {
    const userType=localStorage.getItem("usertype")
     const getDoc=async()=>{
         try {
-           const res=await axios.get(`http://localhost:5500/doctors/doctor/${id}`,{headers:{"Authorization":userToken,"userType":userType}}) 
+           const res=await axios.get(`https://cure-meet-backend.vercel.app/doctors/doctor/${id}`,{headers:{"Authorization":userToken,"userType":userType}}) 
            setDoc(res.data.doctor)
            setReviews(res.data.reviews)
 
@@ -55,7 +55,7 @@ const DocPage = () => {
 
     const getDocSlots=async()=>{
         try {
-            const res=await axios.post("http://localhost:5500/slots/getSlots",{date:selectedSlot,doctorId:id},{headers:{"Authorization":userToken,"userType":userType}})
+            const res=await axios.post("https://cure-meet-backend.vercel.app/slots/getSlots",{date:selectedSlot,doctorId:id},{headers:{"Authorization":userToken,"userType":userType}})
             setTimeSlots(res.data)
         } catch (error) {
             console.log(error)
@@ -64,7 +64,7 @@ const DocPage = () => {
    
     const bookAppointment=async()=>{
         try {
-            const res=await axios.post("http://localhost:5500/appointments/bookAppointment",{doctorId:doc.id,date:selectedSlot,time:timeSlot},{headers:{"Authorization":userToken,"userType":userType}})
+            const res=await axios.post("https://cure-meet-backend.vercel.app/appointments/bookAppointment",{doctorId:doc.id,date:selectedSlot,time:timeSlot},{headers:{"Authorization":userToken,"userType":userType}})
             alert("Appointment made succesfully")
             setTrigger(!trigger)
         } catch (error) {
