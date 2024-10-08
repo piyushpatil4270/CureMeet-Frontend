@@ -9,7 +9,7 @@ const userType=localStorage.getItem("usertype")
   const cancelAppointment = async () => {
     try {
       console.log("DoctorId is ", doctorId);
-      const res = await axios.post("https://cure-meet-backend.vercel.app/appointments/cancelAppointment", { doctorId, date, aptId: id, time },{headers:{"Authorization":userToken,"userType":userType}});
+      const res = await axios.post("http://localhost:5500/appointments/cancelAppointment", { doctorId, date, aptId: id, time },{headers:{"Authorization":userToken,"userType":userType}});
       setTrigger(!trigger);
     } catch (error) {
       console.log("Error: ", error);
@@ -24,7 +24,7 @@ const userType=localStorage.getItem("usertype")
       </div>
       <div className='flex gap-1 mx-1 items-center justify-center'>
         <span className='text-sm font-semibold'>Date: </span>
-        <span className='text-sm font-normal'>{date.split("T")[0]}</span>
+        <span className='text-sm font-normal'>{date.slice(0,10)}</span>
       </div>
       <div className='flex gap-1 mx-1 items-center justify-center'>
         <span className='text-sm font-semibold'>Time: </span>
