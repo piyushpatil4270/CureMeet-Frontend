@@ -134,7 +134,7 @@ const DocPage = () => {
                                 <div className="flex flex-col items-center py-2">
                                     <h2 className="text-[14px] font-bold">{selectedSlot}</h2>
                                     <div className="grid grid-cols-5 justify-center">
-                                        {!loading?timeSlots.map((slot, index) => (
+                                        {!loading && timeSlots.map((slot, index) => (
                                             <button
                                                 key={index}
                                                 disabled={!slot.available}
@@ -145,8 +145,10 @@ const DocPage = () => {
                                             >
                                                 {slot.time}
                                             </button>
-                                        )):<div className='justify-center items-center w-full'><span className='text-[12px]'>Loading...</span></div>}
+                                        ))}
+                                        
                                     </div>
+                                    {loading && <span className='text-[12px]'>Loading...</span>}
                                     {timeSlot && (
                                         <div className="mt-4">
                                             <button 
