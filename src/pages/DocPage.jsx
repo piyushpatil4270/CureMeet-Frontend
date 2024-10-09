@@ -145,7 +145,7 @@ const DocPage = () => {
                                             >
                                                 {slot.time}
                                             </button>
-                                        )):"Loading..."}
+                                        )):<div className='justify-center items-center'><span className='text-[12px]'>Loading...</span></div>}
                                     </div>
                                     {timeSlot && (
                                         <div className="mt-4">
