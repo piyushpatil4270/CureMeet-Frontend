@@ -113,7 +113,7 @@ const ProfilePage = () => {
 
   const fetchDocuments = async () => {
     try {
-      const res = await axios.post('https://cure-meet-backend.vercel.app/documents/getAll', { },{headers:{"Authorization":userToken,"userType":userType}});
+      const res = await axios.post('http://localhost:5500/documents/getAll', { },{headers:{"Authorization":userToken,"userType":userType}});
       setDocs(res.data);
     } catch (error) {
       console.log('Error: ', error);
@@ -129,11 +129,13 @@ const ProfilePage = () => {
       const formData = new FormData();
       formData.append('file', file);
       formData.append('userId', userId);
-      const res = await axios.post('https://cure-meet-backend.vercel.app/documents/create', formData,{headers:{"Authorization":userToken,"userType":userType}});
-      if (res.status === 202) {
+      const res = await axios.post('http://localhost:5500/documents/create', formData,{headers:{"Authorization":userToken,"userType":userType}});
+       if(res.status>=200 && res.status<=210){
         alert("Document uploaded successfully");
         setTrigger(!trigger);
-      }
+       }
+        
+    
     } catch (error) {
       console.log('Error: ', error);
     }

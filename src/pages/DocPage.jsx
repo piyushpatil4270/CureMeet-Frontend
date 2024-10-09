@@ -11,6 +11,7 @@ const DocPage = () => {
     const [timeSlot, setselecttime] = useState(null);
     const [reviews,setReviews]=useState([])
     const [avgRating,setAvgrating]=useState(0)
+    const [loading,setLoading]=useState(false)
     const {id}=useParams()
     const [doc,setDoc]=useState(null)
     const [timeSlots,setTimeSlots]=useState([
@@ -55,8 +56,10 @@ const DocPage = () => {
 
     const getDocSlots=async()=>{
         try {
+            setLoading(true)
             const res=await axios.post("https://cure-meet-backend.vercel.app/slots/getSlots",{date:selectedSlot,doctorId:id},{headers:{"Authorization":userToken,"userType":userType}})
             setTimeSlots(res.data)
+            setLoading(false)
         } catch (error) {
             console.log(error)
         }
@@ -131,7 +134,7 @@ const DocPage = () => {
                                 <div className="flex flex-col items-center py-2">
                                     <h2 className="text-[14px] font-bold">{selectedSlot}</h2>
                                     <div className="grid grid-cols-5 justify-center">
-                                        {timeSlots?timeSlots.map((slot, index) => (
+                                        {!loading?timeSlots.map((slot, index) => (
                                             <button
                                                 key={index}
                                                 disabled={!slot.available}
