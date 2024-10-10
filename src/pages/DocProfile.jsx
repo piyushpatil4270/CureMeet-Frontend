@@ -26,7 +26,7 @@ const userToken=localStorage.getItem("Htoken")
 const userType=localStorage.getItem("usertype")
   const fetchUser = async () => {
     try {
-      const res = await axios.post('https://cure-meet-backend.vercel.app/auth/doctor/profile', { userId:userId,date:moment.utc().toDate() },{headers:{"Authorization":userToken,"userType":userType}});
+      const res = await axios.post('https://www.cure-meet2.kesug.com/auth/doctor/profile', { userId:userId,date:moment.utc().toDate() },{headers:{"Authorization":userToken,"userType":userType}});
       setUser(res.data.doctor);
       setPermission(res.data.permission)
     } catch (error) {
@@ -37,7 +37,7 @@ const userType=localStorage.getItem("usertype")
 
   const fetchData=async()=>{
     try {
-      const res=await axios.post("https://cure-meet-backend.vercel.app/appointments/doctor/monthlyData",{},{headers:{"Authorization":userToken,"userType":userType}})
+      const res=await axios.post("https://www.cure-meet2.kesug.com/appointments/doctor/monthlyData",{},{headers:{"Authorization":userToken,"userType":userType}})
     setMonthlyData(res.data.final)
     const daily=res.data.trend.reverse()
     setDailyData(daily)
@@ -51,7 +51,7 @@ const userType=localStorage.getItem("usertype")
 
   const createSlots=async()=>{
     try {
-      const res=await axios.get("https://cure-meet-backend.vercel.app/slots/createSlots")
+      const res=await axios.get("https://www.cure-meet2.kesug.com/slots/createSlots")
       alert("Slots Created Successfully")
       fetchUser()
     } catch (error) {

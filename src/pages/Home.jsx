@@ -8,7 +8,7 @@ const Home = () => {
   const userType=localStorage.getItem("usertype")
   const getDocs=async()=>{
     try {
-      const res=await axios.get(`https://cure-meet-backend.vercel.app/doctors/doctors/${category}`,{headers:{"Authorization":userToken,"userType":userType}})
+      const res=await axios.get(`https://www.cure-meet2.kesug.com/doctors/doctors/${category}`,{headers:{"Authorization":userToken,"userType":userType}})
       setDoctors(res.data)
     } catch (error) {
       console.log(error)

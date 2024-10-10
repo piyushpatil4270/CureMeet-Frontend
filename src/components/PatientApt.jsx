@@ -9,7 +9,7 @@ const userType=localStorage.getItem("usertype")
   const cancelAppointment = async () => {
     try {
       console.log("DoctorId is ", doctorId);
-      const res = await axios.post("https://cure-meet-backend.vercel.app/appointments/cancelAppointment", { doctorId, date, aptId: id, time },{headers:{"Authorization":userToken,"userType":userType}});
+      const res = await axios.post("https://www.cure-meet2.kesug.com/appointments/cancelAppointment", { doctorId, date, aptId: id, time },{headers:{"Authorization":userToken,"userType":userType}});
       setTrigger(!trigger);
     } catch (error) {
       console.log("Error: ", error);

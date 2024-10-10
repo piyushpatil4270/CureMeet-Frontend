@@ -16,7 +16,7 @@ const Appointments = () => {
  const fetchAppointments=async()=>{
   try {
     setLoading(true)
-    const res=await axios.get("https://cure-meet-backend.vercel.app/appointments/doctor/todaysAppointments",{headers:{"Authorization":userToken,"userType":userType}})
+    const res=await axios.get("https://www.cure-meet2.kesug.com/appointments/doctor/todaysAppointments",{headers:{"Authorization":userToken,"userType":userType}})
     setAppointments(res.data)
     setLoading(false)
   } catch (error) {

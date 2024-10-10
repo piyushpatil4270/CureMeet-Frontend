@@ -30,7 +30,7 @@ const Signup = () => {
       formData.append("file",file)
       formData.append("department",department)
       const res = await axios.post(
-        `https://cure-meet-backend.vercel.app/auth/${isPatient?'patient':'doctor'}/signup`,
+        `https://www.cure-meet2.kesug.com/auth/${isPatient?'patient':'doctor'}/signup`,
         formData
       );
       if (res.status === 200) {
@@ -41,7 +41,7 @@ const Signup = () => {
       }
     } catch (error) {
       console.log("error");
-      alert(error.message)
+      alert(error?.message)
     }
   };
   return (

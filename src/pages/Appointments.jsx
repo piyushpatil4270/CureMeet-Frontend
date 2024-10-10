@@ -17,7 +17,7 @@ const Appointments = () => {
  const userType=localStorage.getItem("usertype")
   const fetchAppointments=async()=>{
     try {
-      const res=await axios.post("https://cure-meet-backend.vercel.app/appointments/doctor/appointments",{date:selectedDate,doctorId:3},{headers:{"Authorization":userToken,"userType":userType}})
+      const res=await axios.post("https://www.cure-meet2.kesug.com/appointments/doctor/appointments",{date:selectedDate,doctorId:3},{headers:{"Authorization":userToken,"userType":userType}})
       setAppointments(res.data)
     } catch (error) {
       console.log(error)
