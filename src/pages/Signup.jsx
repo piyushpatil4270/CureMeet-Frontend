@@ -34,7 +34,9 @@ const Signup = () => {
         formData
       );
       if (res.status === 200) {
+
         alert(res.data);
+        navigate("/");
       } else if (res.status === 202) {
         alert("Registered successfully");
         navigate("/");
