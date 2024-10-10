@@ -30,7 +30,7 @@ const Signup = () => {
       formData.append("file",file)
       formData.append("department",department)
       const res = await axios.post(
-        `https://www.cure-meet2.kesug.com/auth/${isPatient?'patient':'doctor'}/signup`,
+        `http://localhost:5500/auth/${isPatient?'patient':'doctor'}/signup`,
         formData
       );
       if (res.status === 200) {
