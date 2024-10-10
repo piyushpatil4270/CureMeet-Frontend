@@ -22,7 +22,7 @@ const DApp = () => {
 
   const fetchAppointment = async () => {
     try {
-      const res = await axios.post("https://www.cure-meet2.kesug.com/appointments/doctor/appointment", { appointmentId: appointmentId }, { headers: { "Authorization": userToken, "userType": userType } });
+      const res = await axios.post("https://cure-meet-backend.vercel.app/appointments/doctor/appointment", { appointmentId: appointmentId }, { headers: { "Authorization": userToken, "userType": userType } });
       setAppointment(res.data?.appointments);
       setApresc(res.data?.prescriptions);
       setReview(res.data.reviews);
@@ -39,7 +39,7 @@ const DApp = () => {
 
   const appointmentCompleted = async () => {
     try {
-      const res = await axios.post("https://www.cure-meet2.kesug.com/appointments/successful", { appointmentId: appointmentId, presc: prescriptions, patientId: appointment.patient.id, doctorId: appointment.doctorId }, { headers: { "Authorization": userToken, "userType": userType } });
+      const res = await axios.post("https://cure-meet-backend.vercel.app/appointments/successful", { appointmentId: appointmentId, presc: prescriptions, patientId: appointment.patient.id, doctorId: appointment.doctorId }, { headers: { "Authorization": userToken, "userType": userType } });
       if (res.status === 202) {
         alert("Appointment Successful");
         setTrigger(!trigger);
@@ -52,7 +52,7 @@ const DApp = () => {
   const userDocs = async () => {
     if (appointment) {
       try {
-        const res = await axios.post("https://www.cure-meet2.kesug.com/documents/getPatientDocuments ", { userId: appointment.patient.id }, { headers: { "Authorization": userToken, "userType": userType } });
+        const res = await axios.post("https://cure-meet-backend.vercel.app/documents/getPatientDocuments ", { userId: appointment.patient.id }, { headers: { "Authorization": userToken, "userType": userType } });
         console.log("the docs are ", res.data);
         setDocs(res.data);
       } catch (error) {

@@ -42,7 +42,7 @@ const DocPage = () => {
    const userType=localStorage.getItem("usertype")
     const getDoc=async()=>{
         try {
-           const res=await axios.get(`https://www.cure-meet2.kesug.com/doctors/doctor/${id}`,{headers:{"Authorization":userToken,"userType":userType}}) 
+           const res=await axios.get(`https://cure-meet-backend.vercel.app/doctors/doctor/${id}`,{headers:{"Authorization":userToken,"userType":userType}}) 
            setDoc(res.data.doctor)
            setReviews(res.data.reviews)
 
@@ -57,7 +57,7 @@ const DocPage = () => {
     const getDocSlots=async()=>{
         try {
             setLoading(true)
-            const res=await axios.post("https://www.cure-meet2.kesug.com/slots/getSlots",{date:selectedSlot,doctorId:id},{headers:{"Authorization":userToken,"userType":userType}})
+            const res=await axios.post("https://cure-meet-backend.vercel.app/slots/getSlots",{date:selectedSlot,doctorId:id},{headers:{"Authorization":userToken,"userType":userType}})
             setTimeSlots(res.data)
             setLoading(false)
         } catch (error) {
@@ -67,7 +67,7 @@ const DocPage = () => {
    
     const bookAppointment=async()=>{
         try {
-            const res=await axios.post("https://www.cure-meet2.kesug.com/appointments/bookAppointment",{doctorId:doc.id,date:selectedSlot,time:timeSlot},{headers:{"Authorization":userToken,"userType":userType}})
+            const res=await axios.post("https://cure-meet-backend.vercel.app/appointments/bookAppointment",{doctorId:doc.id,date:selectedSlot,time:timeSlot},{headers:{"Authorization":userToken,"userType":userType}})
             alert("Appointment made succesfully")
             setTrigger(!trigger)
         } catch (error) {
