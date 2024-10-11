@@ -30,7 +30,7 @@ const Signin = ({setAuth,setUserType}) => {
             else alert(res.data)
         } catch (error) {
             console.log(error)
-            alert(error?.message)
+            alert(error?.response?.data)
         }
     }
     
