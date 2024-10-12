@@ -64,7 +64,7 @@ const PrescriptionCard = ({id,prescriptions,time,date,doctor}) => {
           </h2>
         <p className="text-[12px] text-black">Email: {doctor.email} </p>
         <p className="text-[12px] text-black">Prescribed On: {moment.utc(date).format("DD-MMMM-YYYY")}</p>
-        <p className="text-[12px] text-black">Time: {moment(time, "HH:mm:ss").format("h:mm A")}</p>
+   
         <div className='flex gap-1 items-center'>
         <span className="bg-blue-800 w-fit px-1 text-white text-[12px] font-semibold  py-1 rounded-sm  gap-1 mt-3">
          Download Prescriptions  <Download
